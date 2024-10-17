@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import ComponentButton from "../element/button";
 import { Link, Navigate, useNavigate } from "react-router-dom";
@@ -21,13 +21,20 @@ const FormLogin = () => {
     email: "",
     password: "",
   });
+  const [validationError, setValidationError] = useState("");
+  const [displayError, setDisplayError] = useState(false);
+  const [displayValidationError, setDisplayValidationError] = useState(false);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if (!formData.email || !formData.password) {
+      setValidationError("Kolom email dan kata sandi tidak Boleh Kosong.");
+      error("");
+      return;
+    }
     try {
       const resultAction = await dispatch(loginUser(formData));
       const result = unwrapResult(resultAction);
@@ -46,8 +53,30 @@ const FormLogin = () => {
       return;
     }
   };
+
+  useEffect(() => {
+    if (validationError || error) {
+      const timer = setTimeout(() => {
+        setValidationError(false);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [validationError, displayValidationError, error]);
+
   return (
     <div>
+      {error ? (
+        <div className="alert alert-danger" role="alert">
+          {error}
+        </div>
+      ) : (
+        validationError && (
+          <div className="alert alert-danger mt-3" role="alert">
+            {validationError}
+          </div>
+        )
+      )}
       <form onSubmit={handleSubmit}>
         <Input
           logoLeft={emailImage}
@@ -79,13 +108,11 @@ const FormLogin = () => {
           Belum punya akun? registrasi
           <span className=" fw-bold text-decoration-none">
             <Link to={"/register"} className="text-decoration-none text-danger">
-              {" "}
               di sini
             </Link>
           </span>
         </p>
       </form>
-      {error && <p>{error}</p>}
     </div>
   );
 };
