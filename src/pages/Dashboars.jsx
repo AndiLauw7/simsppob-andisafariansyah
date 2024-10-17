@@ -58,8 +58,8 @@ const DashboardLayouts = () => {
         <div className="col-md-12 mt-5 ">
           <CardBanner />
         </div>
-        <div className="col-md-12">
-          <h3 className=" mb-5">Temukan promo menarik lainnya</h3>
+        <div className="col-md-12 mb-5">
+          <h3 className="mb-5">Temukan promo menarik lainnya</h3>
           <CardSlider />
         </div>
       </MainLayout>
