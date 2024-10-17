@@ -9,6 +9,8 @@ import TopUp from "./pages/topup";
 import PembayaranBanner from "./pages/pembayaran-banner";
 import DashboardLayouts from "./pages/Dashboars";
 import RiwayatTransaksi from "./pages/riwayatTransaksi";
+import ProfilKu from "./pages/profilku";
+import ProfilKuUpdate from "./pages/editProfilku";
 function App() {
   const routes = [
     {
@@ -38,6 +40,14 @@ function App() {
     {
       path: "/riwayat-transaksi",
       element: <RiwayatTransaksi></RiwayatTransaksi>,
+    },
+    {
+      path: "/profilku",
+      element: <ProfilKu></ProfilKu>,
+    },
+    {
+      path: "/profilku-update",
+      element: <ProfilKuUpdate></ProfilKuUpdate>,
     },
     {
       path: "*",

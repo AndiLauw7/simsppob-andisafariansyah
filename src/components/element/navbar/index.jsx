@@ -38,7 +38,7 @@ const DefaultNavbar = () => {
               </Nav.Link>
               <Nav.Link
                 href=""
-                className={isActive("/akun") ? "text-warning" : ""}
+                className={isActive("/profilku") ? "text-warning" : ""}
                 onClick={() => navigate("/profilku")}
               >
                 Akun

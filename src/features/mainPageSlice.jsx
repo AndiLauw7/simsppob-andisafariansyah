@@ -16,6 +16,20 @@ export const fetchProfile = createAsyncThunk(
   }
 );
 
+
+export const updateProfile = createAsyncThunk(
+  "profile/update",
+  async ({ token, updatedProfileData }) => {
+    const response = await axios.put(
+      "https://take-home-test-api.nutech-integrasi.com/profile/update",
+      updatedProfileData,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+
+    return response.data;
+  }
+);
+
 export const fetchBalance = createAsyncThunk(
   "mainPage/fetchBalance",
   async (token) => {
@@ -79,6 +93,19 @@ const mainPageSlice = createSlice({
       .addCase(fetchProfile.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
+      })
+
+      .addCase(updateProfile.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(updateProfile.fulfilled, (state, action) => {
+        state.loading = false;
+
+        state.profile = action.payload;
+      })
+      .addCase(updateProfile.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       })
       .addCase(fetchBalance.pending, (state) => {
         state.loading = true;

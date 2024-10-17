@@ -14,17 +14,19 @@ const Input = (props) => {
     value,
     onChange,
     autoComplete,
+    readOnly,
   } = props;
   return (
     <div className="position-relative ">
       <input
         type={type}
-        className=" form-control py-2 my-3 "
+        className="form-control py-2 my-3 "
         placeholder={placeholder}
         name={name}
         value={value}
         onChange={onChange}
         autoComplete={autoComplete}
+        readOnly={readOnly}
         style={{
           paddingLeft: logoLeft ? "30px" : "15px",
           paddingRight: type === "password" ? "30px" : "15px",

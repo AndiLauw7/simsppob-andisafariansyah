@@ -21,3 +21,7 @@ body {
 .cardCustom {
     margin: 0 10px;
 }
+
+.border-red {
+    border: 10px solid red;
+}

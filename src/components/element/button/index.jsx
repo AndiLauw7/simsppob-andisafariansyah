@@ -4,11 +4,11 @@ import React from "react";
 import { Button } from "react-bootstrap";
 
 const ComponentButton = (props) => {
-  const { children, classname, disabled, onClick, type } = props;
+  const { children, classname, disabled, onClick, type = "button" } = props;
   return (
     <div className="d-grid gap-3">
       <Button
-        className={`btn btn-primary size-lg" ${classname}`}
+        className={`btn btn-primary size-lg outline-danger" ${classname}`}
         onClick={onClick}
         disabled={disabled}
         type={type}
