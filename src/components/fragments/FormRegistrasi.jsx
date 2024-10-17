@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import ComponentButton from "../element/button";
-import emailImage from "/public/email.png";
-import userImage from "/public/user.png";
-import kunci from "/public/padlock.png";
-import view from "/public/view.png";
+import emailImage from "/email.png";
+import userImage from "/user.png";
+import kunci from "/padlock.png";
+import view from "/view.png";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../features/authSlice";

@@ -7,7 +7,7 @@ import ComponentButton from "../components/element/button";
 import Input from "../components/element/input/Input";
 import CardSection from "../components/fragments/CardSection";
 import CardUser from "../components/fragments/CardUser";
-import logoTopUp from "/public/topup.png";
+import logoTopUp from "/topup.png";
 import { useDispatch, useSelector } from "react-redux";
 import { topUp } from "../features/transactionSlice";
 import { fetchBalance, fetchProfile } from "../features/mainPageSlice";

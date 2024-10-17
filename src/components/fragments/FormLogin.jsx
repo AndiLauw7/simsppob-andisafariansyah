@@ -5,9 +5,9 @@ import React, { useState } from "react";
 import ComponentButton from "../element/button";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
-import emailImage from "/public/email.png";
-import kunci from "/public/padlock.png";
-import view from "/public/view.png";
+import emailImage from "/email.png";
+import kunci from "/padlock.png";
+import view from "/view.png";
 import Input from "../element/input/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../features/authSlice";

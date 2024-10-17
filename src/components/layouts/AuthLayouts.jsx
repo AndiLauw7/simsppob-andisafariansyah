@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from "react";
-import logo from "/public/logol.png";
-import sims from "/public/Logo.png";
+import logo from "/logol.png";
+import sims from "/Logo.png";
 const AuthLayouts = (props) => {
   const { children, title } = props;
   return (

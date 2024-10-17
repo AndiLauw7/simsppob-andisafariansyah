@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import CardCustum from "../element/card";
-import bgSaldo from "/public/bgSaldo.png";
+import bgSaldo from "/bgsaldo.png";
 const CardSection = () => {
   const customStyles = {
     cardStyle: {
