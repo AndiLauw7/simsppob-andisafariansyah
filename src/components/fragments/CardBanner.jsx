@@ -14,7 +14,6 @@ const CardBanner = () => {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      textAlign: "center",
     },
     bodyStyle: {
       width: "70px",
@@ -24,7 +23,6 @@ const CardBanner = () => {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "center",
     },
     logoTop: {
       width: "71px",

@@ -46,7 +46,6 @@ const CardSlider = () => {
       height: "200px",
     },
     bodyStyle: {
-      borderRadius: "0px",
       width: "100%",
       height: "100px",
       padding: "10px",
