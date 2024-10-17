@@ -20,6 +20,7 @@ const DefaultNavbar = () => {
             />
             SIMS PPOB
           </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto fs-6 fw-bold">
               <Nav.Link
