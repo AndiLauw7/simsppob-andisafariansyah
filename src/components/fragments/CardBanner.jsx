@@ -8,22 +8,36 @@ const CardBanner = () => {
   const customStyles = {
     cardStyle: {
       border: "none",
-      width: "100%",
-      height: "200px",
+      width: "90px",
+      height: "120px",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      textAlign: "center",
     },
     bodyStyle: {
       width: "70px",
-      height: "50px",
+      height: "100px",
       color: "black",
       padding: "0px",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
     },
     logoTop: {
-      margin: "auto",
-      width: "100%",
-      height: "100%",
+      width: "71px",
+      height: "40px",
+      objectFit: "contain",
     },
     titleBody: {
-      margin: "0px",
+      marginTop: "5px",
+
+      textAlign: "center",
+      fontSize: "10px",
+
+      wordWrap: "break-word",
     },
   };
 
@@ -34,7 +48,7 @@ const CardBanner = () => {
     navigate("/pembayaran-banner", { state: { service } });
   };
   return (
-    <div className="d-flex justify-content-center ">
+    <div className="d-flex justify-content-center flex-wrap">
       {services && services.length > 0 ? (
         services.map((item) => (
           <div key={item.service_code} onClick={() => handleCardClick(item)}>
@@ -43,6 +57,7 @@ const CardBanner = () => {
               logoTop={item.service_icon}
               titleHeader={item.service_name}
               styles={customStyles}
+              titleClass="custom-title"
             />
           </div>
         ))
