@@ -1,8 +1,10 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import Logo from "/public/Logo.png";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 const DefaultNavbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const isActive = (path) => location.pathname === path;
   return (
     <div>
       <Navbar expand="lg" className="bg-body-light border-bottom ">
@@ -20,13 +22,27 @@ const DefaultNavbar = () => {
           </Navbar.Brand>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto fs-6 fw-bold">
-              <Nav.Link href="" onClick={() => navigate("/top-up")}>
+              <Nav.Link
+                className={isActive("/top-up") ? "text-warning" : ""}
+                href=""
+                onClick={() => navigate("/top-up")}
+              >
                 Top Up
               </Nav.Link>
-              <Nav.Link href="" onClick={() => navigate("/riwayat-transaksi")}>
+              <Nav.Link
+                href=""
+                className={isActive("/riwayat-transaksi") ? "text-warning" : ""}
+                onClick={() => navigate("/riwayat-transaksi")}
+              >
                 Transaction
               </Nav.Link>
-              <Nav.Link href="#link">Akun</Nav.Link>
+              <Nav.Link
+                href=""
+                className={isActive("/akun") ? "text-warning" : ""}
+                onClick={() => navigate("/profilku")}
+              >
+                Akun
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
