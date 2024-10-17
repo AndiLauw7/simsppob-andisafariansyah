@@ -23,7 +23,9 @@ const DefaultNavbar = () => {
               <Nav.Link href="" onClick={() => navigate("/top-up")}>
                 Top Up
               </Nav.Link>
-              <Nav.Link href="#link">Transaction</Nav.Link>
+              <Nav.Link href="" onClick={() => navigate("/riwayat-transaksi")}>
+                Transaction
+              </Nav.Link>
               <Nav.Link href="#link">Akun</Nav.Link>
             </Nav>
           </Navbar.Collapse>
