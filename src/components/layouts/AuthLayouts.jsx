@@ -8,7 +8,7 @@ const AuthLayouts = (props) => {
   return (
     <div className="d-flex justify-content-between align-items-center ">
       <div className="flex col-md-6 text-center px-5">
-        <div className="px-5 ">
+        <div className="px-5 mt-3 ">
           <img src={sims} alt="Logo" className="px-1" />
           <span className="fw-bold">SIMS PPOB</span>
           <h4 className="fw-bold px-5 mt-3 mb-5 ">{title}</h4>

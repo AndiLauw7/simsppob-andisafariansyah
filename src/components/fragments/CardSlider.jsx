@@ -39,7 +39,6 @@ const CardSlider = () => {
   };
   const customStyles = {
     cardStyle: {
-      borderRadius: "0px",
       border: "none",
       width: "calc(100% - 40px)",
       margin: "0 20px",
