@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useEffect } from "react";
 import MainLayout from "../components/layouts/MainLyouts";
@@ -7,6 +8,8 @@ import userImage from "/user.png";
 import { useDispatch, useSelector } from "react-redux";
 import ComponentButton from "../components/element/button";
 import { fetchProfile, updateProfile } from "../features/mainPageSlice";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -16,6 +19,8 @@ const EditProfilku = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [isModified, setIsModified] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,6 +30,18 @@ const EditProfilku = () => {
       setEmail(profile.email || "");
     }
   }, [profile]);
+
+  const checkIfModified = () => {
+    if (
+      firstName !== profile.first_name ||
+      lastName !== profile.last_name ||
+      email !== profile.email
+    ) {
+      setIsModified(true);
+    } else {
+      setIsModified(false);
+    }
+  };
 
   useEffect(() => {
     const token = sessionStorage.getItem("token");
@@ -49,14 +66,27 @@ const EditProfilku = () => {
       const result = await dispatch(
         updateProfile({ token, updatedProfileData })
       ).unwrap();
+      setFirstName(result.data.first_name);
+      setLastName(result.data.last_name);
+      setEmail(result.data.email);
+      setIsSaved(true);
+      await dispatch(fetchProfile(token));
+      setTimeout(() => {
+        setIsSaved(false);
+        navigate("/profilku-update");
+      }, 3000);
     } catch (error) {
       return error;
     }
   };
-
+  const navigate = useNavigate();
+  const handleBatal = () => {
+    navigate("/profilku");
+  };
   return (
     <MainLayout>
       <div className="text-center mb-4">
+        <ToastContainer />
         {loading ? (
           <p>Loading...</p>
         ) : (
@@ -69,35 +99,55 @@ const EditProfilku = () => {
                   className="rounded-circle"
                   style={{ width: "150px", height: "150px" }}
                 />
-                <h1>
-                  {profile.first_name} {profile.last_name}
-                </h1>
+
                 <div className="text-center w-50 mx-auto">
+                  {isSaved && (
+                    <div className="alert alert-success" role="alert">
+                      Profile updated successfully!
+                    </div>
+                  )}
+                  <h1>
+                    {profile.first_name} {profile.last_name}
+                  </h1>
                   <form onSubmit={handleUpdateProfile}>
                     <Input
                       logoLeft={emailImage}
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        checkIfModified();
+                      }}
                     />
                     <Input
                       logoLeft={userImage}
                       value={firstName}
-                      onChange={(e) => setFirstName(e.target.value)}
+                      onChange={(e) => {
+                        setFirstName(e.target.value);
+                        checkIfModified();
+                      }}
                     />
                     <Input
                       logoLeft={userImage}
                       value={lastName}
                       onChange={(e) => {
                         setLastName(e.target.value);
+                        checkIfModified();
                       }}
                     />
 
                     <ComponentButton
                       type="submit"
                       classname="btn btn-danger mt-3"
-                      disabled={loading}
+                      disabled={!isModified || loading}
                     >
                       {loading ? "Saving..." : "Simpan"}
+                    </ComponentButton>
+                    <ComponentButton
+                      classname="btn btn-danger mt-3"
+                      disabled={loading}
+                      onClick={handleBatal}
+                    >
+                      Batal
                     </ComponentButton>
                   </form>
                 </div>

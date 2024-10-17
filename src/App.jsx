@@ -11,6 +11,7 @@ import DashboardLayouts from "./pages/Dashboars";
 import RiwayatTransaksi from "./pages/riwayatTransaksi";
 import ProfilKu from "./pages/profilku";
 import ProfilKuUpdate from "./pages/editProfilku";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   const routes = [
     {
