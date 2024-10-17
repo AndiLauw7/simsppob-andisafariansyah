@@ -10,6 +10,7 @@ const CardCustum = (props) => {
     titleFooter,
     logoTop,
     classname,
+    onClick,
     styles = {},
   } = props;
 
@@ -25,7 +26,7 @@ const CardCustum = (props) => {
   };
 
   return (
-    <div className=" cardCustom">
+    <div className="cardCustom">
       <Card
         style={{
           border: "none",
@@ -37,7 +38,10 @@ const CardCustum = (props) => {
         {logoTop && (
           <Card.Img variant="top" src={logoTop} style={{ ...styles.logoTop }} />
         )}
-        <Card.Body style={{ ...defaultBodyStyle, ...styles.bodyStyle }}>
+        <Card.Body
+          onClick={onClick}
+          style={{ ...defaultBodyStyle, ...styles.bodyStyle }}
+        >
           <Card.Title className={`{mb-3 mt-3 ${classname}`}>
             {titleHeader}
           </Card.Title>

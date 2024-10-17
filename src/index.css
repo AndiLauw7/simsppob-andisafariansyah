@@ -7,3 +7,17 @@ body {
     margin: 0;
     padding: 0;
 }
+
+.slider-container {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.slick-slider {
+    overflow: hidden;
+}
+
+.cardCustom {
+    margin: 0 10px;
+}

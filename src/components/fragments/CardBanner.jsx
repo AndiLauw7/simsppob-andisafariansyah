@@ -2,6 +2,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import CardCustum from "../element/card";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const CardBanner = () => {
   const customStyles = {
@@ -27,18 +28,23 @@ const CardBanner = () => {
   };
 
   const { services } = useSelector((state) => state.mainPage);
+  const navigate = useNavigate();
 
+  const handleCardClick = (service) => {
+    navigate("/pembayaran-banner", { state: { service } });
+  };
   return (
     <div className="d-flex justify-content-center ">
       {services && services.length > 0 ? (
         services.map((item) => (
-          <CardCustum
-            className="CardService"
-            key={item.service_code}
-            logoTop={item.service_icon}
-            titleHeader={item.service_name}
-            styles={customStyles}
-          />
+          <div key={item.service_code} onClick={() => handleCardClick(item)}>
+            <CardCustum
+              className="CardService"
+              logoTop={item.service_icon}
+              titleHeader={item.service_name}
+              styles={customStyles}
+            />
+          </div>
         ))
       ) : (
         <p>No banners available</p>

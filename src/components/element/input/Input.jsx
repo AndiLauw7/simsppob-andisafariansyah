@@ -37,7 +37,7 @@ const Input = (props) => {
           className="position-absolute"
           style={{
             width: "15px",
-            height: "10px",
+            height: "17px",
             top: "53%",
             left: "10px",
             transform: "translateY(-50%)",

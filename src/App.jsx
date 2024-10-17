@@ -2,11 +2,12 @@ import { Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/login";
 
 import RegisterPage from "./pages/register";
-
+import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import TopUp from "./pages/topup";
+import PembayaranBanner from "./pages/pembayaran-banner";
 import DashboardLayouts from "./pages/Dashboars";
 function App() {
   const routes = [
@@ -29,6 +30,10 @@ function App() {
     {
       path: "/top-up",
       element: <TopUp></TopUp>,
+    },
+    {
+      path: "/pembayaran-banner",
+      element: <PembayaranBanner></PembayaranBanner>,
     },
     {
       path: "*",

@@ -23,6 +23,31 @@ export const topUp = createAsyncThunk(
   }
 );
 
+export const pembayaranBanners = createAsyncThunk(
+  "bayarbanner/bayarBanner",
+  async (
+    { amount: total_amount, service_code, token },
+    { rejectWithValue }
+  ) => {
+    try {
+      const response = await axios.post(
+        "https://take-home-test-api.nutech-integrasi.com/transaction",
+        { service_code: service_code, amount: total_amount },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "Error processing payment";
+      return rejectWithValue({ message: errorMessage });
+    }
+  }
+);
+
 const topupSlice = createSlice({
   name: "topup",
   initialState: {
@@ -50,6 +75,23 @@ const topupSlice = createSlice({
         state.loading = false;
         state.error =
           action.payload?.message || "error data transaction tip up";
+        state.balance = null;
+      })
+      .addCase(pembayaranBanners.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(pembayaranBanners.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = action.payload.message; // Assuming the response has a message
+        state.balance =
+          action.payload.data && action.payload.data.balance
+            ? action.payload.data.balance
+            : null;
+      })
+      .addCase(pembayaranBanners.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload?.message || "Error processing payment";
         state.balance = null;
       });
   },
